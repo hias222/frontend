@@ -11,7 +11,7 @@ import StyledLane from "./images/StyledLane";
 import LapStyledLane from "./images/LapStyledLane";
 import FinishStyledLane from "./images/FinishStyledLane";
 
-export class SingleLaneStaticComponent extends React.Component<LaneInterface, LaneState>{
+export class SingleLaneComponent extends React.Component<LaneInterface, LaneState>{
 
   intervalId: NodeJS.Timeout;
   swimmer: swimmerData;
@@ -52,7 +52,6 @@ export class SingleLaneStaticComponent extends React.Component<LaneInterface, La
   }
 
   componentDidUpdate(prevProps: LaneInterface) {
-    //console.log("update " + this.props.lane.lane)
     if (prevProps.lane !== this.props.lane) {
       //console.log("diff update " + this.props.displayMode + " " + JSON.stringify(this.props.lane))
       this.updateData()

@@ -5,11 +5,8 @@ $farbehintergrund:   rgba(196, 196, 196, 0.1);
 $farbegeradeschrift: white;
 $farbeungeradeschrift: white;
 $lanecolor: rgb(152, 0, 23);
-
 $laneborder: rgb(87, 179, 228);
-
-$farbeschrift: white;
-
+$farbeschrift: black;
 $farbehintergrund: rgb(27, 50, 179);
 
 $lanesize: 2em; 
@@ -18,86 +15,13 @@ $normalsize: 1em;
 $topsize: 1.4em;
 
 
-//linear-gradient(45deg, #4cd45a 20%, #FF8E53 70%);
-
-// the <table> css
-
-.statictable {
-    border-spacing: 0;
-    width: 512px;
-    height: 384px;
-    background-color: $farbehintergrund;
-    border-top: 0;
-    border-bottom: 0;
-    border-left: 0;
-    border-right: 0;
-}
-
-.staticmaintable {
-    border-spacing: 0;
-    width: 100%;
-    border-top: 0;
-    border-bottom: 0;
-    border-left: 0;
-    border-right: 0;
-    //width: 512px;
-    // height: 284px;
-    //background-color: $farbehintergrund
-}
-
-.staticheadertable{
-    border-spacing: 0;
-    width: 100%;
-    //width: 512px;
-    //height: 30px;
-    //background-color: $farbehintergrund
-}
-
-.staticemptytable {
-    border-spacing: 0;
-    width: 512px;
-    //height: 384px;
-    border: 2px solid black;
-}
-
-.internaltable{
-    border-spacing: 0;
-    border-top: 0;
-    border-bottom: 0;
-    border-left: 0;
-    border-right: 0;
-    width: 100%;
-}
-
-.staticfooter{
-    font-size: 0.5em;
-    border-spacing: 0;
-    text-align: right;
-    font-weight: bold;
-    color: $farbeschrift;
-    width: 100%;
-    border-top: 0;
-    border-bottom: 0;
-    border-left: 0;
-    border-right: 0;
-}
-//header
-
-.staticeventname{
-    color: $farbeschrift;
-    text-align: center;
-    font-size: 1.1em;
-    //font-size: $normalsize;
-}
-
-.staticheatevent{
+.heatevent{
     color: $farbeschrift;
     font-size: 1.2em;
-    //1.2
     font-weight: bold;
 }
 
-.staticheader_time{
+.header_time{
     color: $farbeschrift;
     text-align: right;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
@@ -105,97 +29,13 @@ $topsize: 1.4em;
 
 ///////// heat 
 
-
-.staticlaneeven {
+.laneeven {
     color: $farbegeradeschrift;
     background: $farbegerade;
     font-size: $lanesize;
     padding-right: 0px;
     background-color: $farbehintergrund;
  }
-
- .staticbox {
-    color: $laneborder;
- }
-
- .logo {
-     font-size: 0.8em;
- }
-
-.staticlaneodd {
-    color: $farbeungeradeschrift;
-    background: $farbeungerade;
-    font-size: $lanesize;
-    padding-right: 0px;
-}
-
-.staticlane_time{
-    color: $farbeschrift;
-    font-size: $lanesize;
-    align-items: right;
-    text-align: right;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
-}
-
-.startstaticlane_time{
-    color: $farbeschrift;
-    text-align: right;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
-}
-
-.staticemptylane {
-    font-size: $smallsize;
-}
-
-.staticclub {
-    font-size: $smallsize;
-}
-
-.staticname {
-    font-size: $normalsize;
-}
-
-.staticplace {
-    font-size: $lanesize;
-    width: 49px;
-    text-align: center;
-}
-
-.startstaticlaneeven {
-    color: $farbegeradeschrift;
-    background: $farbegerade;
-    font-size: $lanesize;
-}
-
-.startstaticlaneodd {
-    color: $farbeungeradeschrift;
-    background: $farbeungerade;
-    font-size: $lanesize;
-}
-
-.staticheadername {
-    color: $farbeschrift;
-    text-align: left;
-}
-
-.staticheatheader {
-    color: $farbeschrift;
-    text-align: left;
-    font-size: $smallsize;
-    text-align: center;
-}
-
-.staticheatbackground {
-    color: $farbeschrift;
-    font-size: $normalsize;
-    
-}
-
-.staticheatheader_time {
-    color: $farbeschrift;
-    font-size: $smallsize;
-    text-align: center;
-}
 
 //message
 .staticmessagetable{

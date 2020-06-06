@@ -1,7 +1,7 @@
 import React from "react";
 import classnames from 'classnames';
 import { LaneData } from "../../interfaces/lanedatainterface";
-import { Grid, Box } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import LaneNumberFinish from "./LaneNumberFinish";
 export default class FinishStyledLane extends React.Component<LaneData, {}> {
 
@@ -35,37 +35,25 @@ export default class FinishStyledLane extends React.Component<LaneData, {}> {
     render() {
         let staticlaneeven = classnames('staticlaneeven');
         let correctName = this.checkName();
-        let staticbox = classnames('staticbox');
 
         return <Grid container item xs={12}>
             <Grid item xs={2}>
-                <Box height={this.box_height} borderTop={1} borderLeft={0} borderBottom={0} className={staticbox}>
-                    <Grid className={staticlaneeven}>
-                        <LaneNumberFinish
-                            laneNumber={this.props.lane}
-                            place={this.props.place}
-                        />
-                    </Grid>
-                </Box>
-
+                <Grid className={staticlaneeven}>
+                    <LaneNumberFinish
+                        laneNumber={this.props.lane}
+                        place={this.props.place}
+                    />
+                </Grid>
             </Grid>
-
             <Grid item xs={7}>
-
-                <Box height={this.box_height} borderTop={1} borderBottom={0} className={staticbox}>
-                    <Grid className={staticlaneeven}>
-                        {correctName}
-                    </Grid>
-                </Box>
-
+                <Grid className={staticlaneeven}>
+                    {correctName}
+                </Grid>
             </Grid>
             <Grid item xs={3} text-align={"center"}>
-                <Box height={this.box_height} borderTop={1} borderBottom={0} borderRight={0} className={staticbox}>
-                    <Grid className={staticlaneeven}>
-                        {this.props.time}
-                    </Grid>
-                </Box>
-
+                <Grid className={staticlaneeven}>
+                    {this.props.time}
+                </Grid>
             </Grid>
         </Grid>;
 

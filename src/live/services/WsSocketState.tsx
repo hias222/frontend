@@ -9,9 +9,6 @@ import getSwimStyles from '../utilities/getSwimStyles';
 export class WsSocketState extends React.Component<WsSocketPropsInterface, WsSocketPropsState>
 {
   backend_url: string;
-
-  //var backend_url = process.env.REACT_APP_BACKEND_DIRECT === "true" ? "http://" + window.location.hostname + ":4001" : process.env.REACT_APP_BACKEND_URL
-
   constructor(props: WsSocketPropsInterface) {
     super(props);
     var get_backend_url = process.env.REACT_APP_BACKEND_DIRECT === "true" ? "http://" + window.location.hostname + ":4001" : process.env.REACT_APP_BACKEND_URL
@@ -51,8 +48,6 @@ export class WsSocketState extends React.Component<WsSocketPropsInterface, WsSoc
     socket.on("FromAPI", (data: any) => {
       var jsondata = JSON.parse(data)
       this.checkIncoming(jsondata);
-      //    this.setState({ response: true })
-      //console.log("WsSocketState FromAPI type: " + jsondata.type)
     });
   }
 
@@ -129,8 +124,6 @@ export class WsSocketState extends React.Component<WsSocketPropsInterface, WsSoc
 
       var swimstyle = (typeof (jsondata.name) !== "undefined" && jsondata.name)
         ? jsondata.name : jsondata.distance + "m " + getSwimStyles(jsondata.swimstyle)
-      //var eventtxt = "Wettkampf " + jsondata.event + ": " + swimstyle
-      //var heattxt = "Lauf " + jsondata.heat + ":"
 
       this.props.onEventHeatChange({
         name: swimstyle,
@@ -188,9 +181,7 @@ export class WsSocketState extends React.Component<WsSocketPropsInterface, WsSoc
     } else {
       this.props.onRunningTimeChange(time.value);
     }
-
   }
-
 
   setDisplayMode(mode: string) {
     this.setState({
@@ -212,13 +203,10 @@ export class WsSocketState extends React.Component<WsSocketPropsInterface, WsSoc
   }
 
   render() {
-
     var webcontent = "";
-
     if (!this.state.WsConnected) {
       webcontent = "connection Error";
     }
-
     return (
       <div>
         {webcontent}

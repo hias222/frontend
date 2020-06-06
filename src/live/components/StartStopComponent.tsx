@@ -114,13 +114,13 @@ export class StartStopComponent extends React.Component<StartStopInterface, Star
 
 
     render() {
-        let staticheader_time = classnames('staticheader_time');
-        let staticheatevent = classnames('staticheatevent');
+        let header_time = classnames('header_time');
+        let heatevent = classnames('heatevent');
 
         return (
-            <Grid container className={staticheatevent} >
+            <Grid container className={heatevent} >
                 <Grid item xs={8}>{this.props.EventHeat.name}</Grid>
-                <Grid item xs={4} className={staticheader_time}>
+                <Grid item xs={4} className={header_time}>
                     {this.format(this.state.displaytime)}
                 </Grid>
             </Grid>

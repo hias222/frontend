@@ -3,10 +3,10 @@ import { StartStopComponent } from "./StartStopComponent";
 import { BaseFrontendInterface } from "../interfaces/BaseFrontendInterface";
 import classnames from 'classnames';
 import { HeaderEventHeatComponent } from "./HeaderEventHeatComponent";
-import { SingleLaneStaticComponent } from "./SingleLaneStaticComponent";
-import { Grid, Box } from "@material-ui/core";
+import { SingleLaneComponent } from "./SingleLaneComponent";
+import { Grid } from "@material-ui/core";
 
-export class BaseFrontendStaticComponent extends React.Component<BaseFrontendInterface, {}> {
+export class BaseFrontendComponent extends React.Component<BaseFrontendInterface, {}> {
 
     componentDidUpdate(prevProps: BaseFrontendInterface) {
 
@@ -18,16 +18,13 @@ export class BaseFrontendStaticComponent extends React.Component<BaseFrontendInt
 
     render() {
 
-        let staticlaneeven = classnames('staticlaneeven');
+        let laneeven = classnames('laneeven');
 
-        let staticbox = classnames('staticbox');
         return (
             <div>
-
                 <HeaderEventHeatComponent
                     EventHeat={this.props.EventHeat}
                 />
-
                 <StartStopComponent
                     startdelayms={this.props.startdelayms}
                     EventHeat={this.props.EventHeat}
@@ -36,7 +33,7 @@ export class BaseFrontendStaticComponent extends React.Component<BaseFrontendInt
                 <Grid container >
                     {
                         this.props.lanes.map((lane, index) => (
-                            <SingleLaneStaticComponent
+                            <SingleLaneComponent
                                 key={index}
                                 lane={lane}
                                 index={index}
@@ -45,18 +42,11 @@ export class BaseFrontendStaticComponent extends React.Component<BaseFrontendInt
                         ))
                     }
                     <Grid item xs={12}>
-            
-                            <Box
-                                borderTop={1} borderLeft={0} borderBottom={0} className={staticbox}>
-                                    <Grid className={staticlaneeven}> 
-                                    {this.props.EventHeat.competition}
-                                    </Grid>
-                
-                            </Box>
-                   
+                        <Grid className={laneeven}>
+                            {this.props.EventHeat.competition}
+                        </Grid>
                     </Grid>
                 </Grid>
-
 
             </div >
         )

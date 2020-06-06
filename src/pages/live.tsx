@@ -3,10 +3,8 @@ import '../styles/App.scss';
 import { WsSocketState } from '../live//services/WsSocketState';
 import { FrontendState } from '../live//state/FrontendState';
 
-import classnames from 'classnames';
-import { Box } from '@material-ui/core';
 import { MessageFrontendComponent } from '../live/components/messages/MessageFrontendComponent';
-import { BaseFrontendStaticComponent } from '../live//components/BaseFrontendStaticComponent';
+import { BaseFrontendComponent } from '../live/components/BaseFrontendComponent';
 import { eventHeat } from '../live/types/EventHeat';
 
 export default class live extends React.Component<{}, FrontendState> {
@@ -142,38 +140,10 @@ export default class live extends React.Component<{}, FrontendState> {
 
     }
 
-    handleFullscreen = (e: any) => {
-        const el = document.documentElement;
-        if (el.requestFullscreen) {
-            el.requestFullscreen();
-        }
-        /*
-        else if (el.mozRequestFullScreen) {
-            el.mozRequestFullScreen()
-        } else if (el.webkitRequestFullscreen) {
-            el.webkitRequestFullscreen()
-        } else if (el.msRequestFullscreen) {
-            el.msRequestFullscreen()
-        }
-        */
-    };
-
 
     render() {
 
         let webcontent = <p>starting</p>;
-        let statictable = classnames('statictable');
-
-        let buttonfullscreen = <div></div>
-
-        if (this.window_top_pixel > 20) {
-            buttonfullscreen = <div>
-                <button onClick={this.handleFullscreen}>Full screen
-                </button>
-                <a href="/download/index.html" >Downloads
-                </a>
-            </div>
-        }
 
         if (this.state.displayMode === 'message' || this.state.displayMode === 'clock' || this.state.displayMode === 'video') {
             webcontent = <MessageFrontendComponent
@@ -184,7 +154,7 @@ export default class live extends React.Component<{}, FrontendState> {
                 displayFormat={"lcd"}
             />
         } else {
-            webcontent = <BaseFrontendStaticComponent
+            webcontent = <BaseFrontendComponent
                 startdelayms={this.state.startdelayms}
                 EventHeat={this.state.eventHeat}
                 lanes={this.state.lanes}
@@ -194,18 +164,13 @@ export default class live extends React.Component<{}, FrontendState> {
         }
         return (
             <div>
-                <Box height={this.window_top_pixel}>
-                    {buttonfullscreen}
-                </Box>
-                <Box width={this.window_width} height={this.window_height} className={statictable}>
-                    <WsSocketState onStartStop={this.onStartStop}
-                        onEventHeatChange={this.onEventHeatChange}
-                        onLaneChange={this.onLaneChange}
-                        onDisplayModeChange={this.onDisplayModeChange}
-                        onRunningTimeChange={this.onRunningTimeChange}
-                        onMessageChange={this.onMessageChange} />
-                    {webcontent}
-                </Box>
+                <WsSocketState onStartStop={this.onStartStop}
+                    onEventHeatChange={this.onEventHeatChange}
+                    onLaneChange={this.onLaneChange}
+                    onDisplayModeChange={this.onDisplayModeChange}
+                    onRunningTimeChange={this.onRunningTimeChange}
+                    onMessageChange={this.onMessageChange} />
+                {webcontent}
             </div>
         );
     }
