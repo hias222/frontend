@@ -35,30 +35,22 @@ export default class LapStyledLane extends React.Component<LaneData, {}> {
     }
 
     render() {
-        let staticlaneeven = classnames('staticlaneeven');
+        let laneeven = classnames('laneeven');
         let correctName = this.checkName();
 
         return <Grid container item xs={12}>
-            <Grid item xs={1}>
-                <Grid className={staticlaneeven}>
-                    <LaneNumber
-                        laneNumber={this.props.lane} />
-                </Grid>
+            <Grid item xs={1} className={laneeven}>
+                <LaneNumber
+                    laneNumber={this.props.lane} />
             </Grid>
-            <Grid item xs={1}>
-                <Grid className={staticlaneeven}>
-                    <PoolIcon></PoolIcon>
-                </Grid>
+            <Grid item xs={1} className={laneeven}>
+                <PoolIcon></PoolIcon>
             </Grid>
-            <Grid item xs={7}>
-                <Grid className={staticlaneeven}>
-                    {correctName}
-                </Grid>
+            <Grid item xs={7} className={laneeven}>
+                {correctName}
             </Grid>
-            <Grid item xs={3} text-align={"center"}>
-                <Grid className={staticlaneeven}>
-                    {this.props.time}
-                </Grid>
+            <Grid item xs={3} text-align={"center"} className={laneeven}>
+                {this.props.time}
             </Grid>
         </Grid>;
 

@@ -6,6 +6,7 @@ import { FrontendState } from '../live//state/FrontendState';
 import { MessageFrontendComponent } from '../live/components/messages/MessageFrontendComponent';
 import { BaseFrontendComponent } from '../live/components/BaseFrontendComponent';
 import { eventHeat } from '../live/types/EventHeat';
+import { Container } from '@material-ui/core';
 
 export default class live extends React.Component<{}, FrontendState> {
 
@@ -154,6 +155,7 @@ export default class live extends React.Component<{}, FrontendState> {
                 displayFormat={"lcd"}
             />
         } else {
+
             webcontent = <BaseFrontendComponent
                 startdelayms={this.state.startdelayms}
                 EventHeat={this.state.eventHeat}
@@ -162,15 +164,18 @@ export default class live extends React.Component<{}, FrontendState> {
                 runningTime={this.state.runningTime}
             />
         }
+
         return (
             <div>
-                <WsSocketState onStartStop={this.onStartStop}
-                    onEventHeatChange={this.onEventHeatChange}
-                    onLaneChange={this.onLaneChange}
-                    onDisplayModeChange={this.onDisplayModeChange}
-                    onRunningTimeChange={this.onRunningTimeChange}
-                    onMessageChange={this.onMessageChange} />
-                {webcontent}
+                <Container maxWidth="md">
+                    <WsSocketState onStartStop={this.onStartStop}
+                        onEventHeatChange={this.onEventHeatChange}
+                        onLaneChange={this.onLaneChange}
+                        onDisplayModeChange={this.onDisplayModeChange}
+                        onRunningTimeChange={this.onRunningTimeChange}
+                        onMessageChange={this.onMessageChange} />
+                    {webcontent}
+                </Container>
             </div>
         );
     }

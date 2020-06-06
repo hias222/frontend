@@ -1,7 +1,6 @@
 import React from "react";
 import { StartStopComponent } from "./StartStopComponent";
 import { BaseFrontendInterface } from "../interfaces/BaseFrontendInterface";
-import classnames from 'classnames';
 import { HeaderEventHeatComponent } from "./HeaderEventHeatComponent";
 import { SingleLaneComponent } from "./SingleLaneComponent";
 import { Grid } from "@material-ui/core";
@@ -17,8 +16,6 @@ export class BaseFrontendComponent extends React.Component<BaseFrontendInterface
     }
 
     render() {
-
-        let laneeven = classnames('laneeven');
 
         return (
             <div>
@@ -41,11 +38,6 @@ export class BaseFrontendComponent extends React.Component<BaseFrontendInterface
                             />
                         ))
                     }
-                    <Grid item xs={12}>
-                        <Grid className={laneeven}>
-                            {this.props.EventHeat.competition}
-                        </Grid>
-                    </Grid>
                 </Grid>
 
             </div >

@@ -12,9 +12,9 @@ export class HeaderEventHeatComponent extends React.Component<HeaderEventHeatInt
     render() {
         let heatevent = classnames('heatevent');
         return (
-            <Grid container className={heatevent}>
-                <Grid item xs={3}>Wettkampf: {this.props.EventHeat.eventnr}</Grid>
-                <Grid item xs={3}>Lauf: {this.props.EventHeat.heatnr}</Grid>
+            <Grid container spacing={1} className={heatevent}>
+                <Grid item xs={6}>Wettkampf: {this.props.EventHeat.eventnr}</Grid>
+                <Grid item xs={6}>Lauf: {this.props.EventHeat.heatnr}</Grid>
             </Grid>
         )
     }

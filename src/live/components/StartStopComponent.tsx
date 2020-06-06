@@ -118,9 +118,9 @@ export class StartStopComponent extends React.Component<StartStopInterface, Star
         let heatevent = classnames('heatevent');
 
         return (
-            <Grid container className={heatevent} >
-                <Grid item xs={8}>{this.props.EventHeat.name}</Grid>
-                <Grid item xs={4} className={header_time}>
+            <Grid container spacing={1} className={heatevent} >
+                <Grid item xs={6}>{this.props.EventHeat.name}</Grid>
+                <Grid item xs={6} className={header_time}>
                     {this.format(this.state.displaytime)}
                 </Grid>
             </Grid>

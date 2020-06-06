@@ -33,27 +33,21 @@ export default class FinishStyledLane extends React.Component<LaneData, {}> {
     }
 
     render() {
-        let staticlaneeven = classnames('staticlaneeven');
+        let laneeven = classnames('laneeven');
         let correctName = this.checkName();
 
         return <Grid container item xs={12}>
-            <Grid item xs={2}>
-                <Grid className={staticlaneeven}>
-                    <LaneNumberFinish
-                        laneNumber={this.props.lane}
-                        place={this.props.place}
-                    />
-                </Grid>
+            <Grid item xs={3} className={laneeven}>
+                <LaneNumberFinish
+                    laneNumber={this.props.lane}
+                    place={this.props.place}
+                />
             </Grid>
-            <Grid item xs={7}>
-                <Grid className={staticlaneeven}>
-                    {correctName}
-                </Grid>
+            <Grid item xs={6} className={laneeven}>
+                {correctName}
             </Grid>
-            <Grid item xs={3} text-align={"center"}>
-                <Grid className={staticlaneeven}>
-                    {this.props.time}
-                </Grid>
+            <Grid item xs={3} text-align={"center"} className={laneeven}>
+                {this.props.time}
             </Grid>
         </Grid>;
 

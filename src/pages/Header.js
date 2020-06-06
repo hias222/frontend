@@ -8,7 +8,7 @@ import DownloadIcon from '@material-ui/icons/CloudDownload';
 
 const useStyles = makeStyles({
     root: {
-      width: 500,
+      width: "100%",
     },
   });
 

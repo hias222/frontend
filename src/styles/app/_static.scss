@@ -9,7 +9,7 @@ $laneborder: rgb(87, 179, 228);
 $farbeschrift: black;
 $farbehintergrund: rgb(27, 50, 179);
 
-$lanesize: 2em; 
+$lanesize: 1.2em; 
 $smallsize: 0.6em;
 $normalsize: 1em;
 $topsize: 1.4em;
@@ -30,11 +30,8 @@ $topsize: 1.4em;
 ///////// heat 
 
 .laneeven {
-    color: $farbegeradeschrift;
-    background: $farbegerade;
     font-size: $lanesize;
-    padding-right: 0px;
-    background-color: $farbehintergrund;
+    padding-right: 1px;
  }
 
 //message
