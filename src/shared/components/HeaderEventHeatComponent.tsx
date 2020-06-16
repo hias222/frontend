@@ -1,5 +1,5 @@
 import React from "react";
-import { eventHeat } from "../../shared/types/EventHeat";
+import { eventHeat } from "../types/EventHeat";
 import { Grid } from "@material-ui/core";
 
 import classnames from 'classnames';

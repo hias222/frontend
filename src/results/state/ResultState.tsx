@@ -1,11 +1,10 @@
-
+import { eventHeat } from "../../shared/types/EventHeat";
 
 export type ResultState = {
-  name: string;
-  event: string;
-  heat: string;
   lastid: string;
   id: string;
   nextid?: string;
+  EventHeat: eventHeat;
+  lanes: string[];
 };
 

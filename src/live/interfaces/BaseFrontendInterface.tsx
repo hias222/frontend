@@ -1,4 +1,4 @@
-import { eventHeat } from "../types/EventHeat";
+import { eventHeat } from "../../shared/types/EventHeat";
 
 export interface BaseFrontendInterface {
     startdelayms: number;

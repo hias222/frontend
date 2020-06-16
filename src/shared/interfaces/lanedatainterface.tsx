@@ -1,4 +1,4 @@
-import { swimmerData } from "../../shared/types/SwimmerData";
+import { swimmerData } from "../types/SwimmerData";
 
 export interface LaneData {
     lane: string;

@@ -2,6 +2,10 @@ import { Grid } from "@material-ui/core";
 import React from "react";
 import { BaseResultInterface } from "../results/interfaces/BaseResultInterface";
 import { ResultState } from "./state/ResultState";
+import { FinishLaneComponent } from "./components/FinishLaneComponent";
+import { HeaderEventHeatComponent } from "../live/components/HeaderEventHeatComponent";
+
+import getSwimSytle from "../shared/utilities/getSwimStyles"
 
 export class BaseResultComponent extends React.Component<BaseResultInterface, ResultState> {
 
@@ -11,11 +15,14 @@ export class BaseResultComponent extends React.Component<BaseResultInterface, Re
         var get_backend_url = process.env.REACT_APP_BACKEND_DIRECT === "true" ? "http://" + window.location.hostname + ":3000" : process.env.REACT_APP_BACKEND_URL
         this.backend_url = get_backend_url === undefined ? "http://" + window.location.hostname + ":3000" : get_backend_url
         this.state = {
-            name: '',
-            event: '0',
-            heat: '0',
+            EventHeat: {
+                name: '',
+                eventnr: '0',
+                heatnr: '0'
+            },
             id: '0',
-            lastid: '0'
+            lastid: '0',
+            lanes: []
         }
     }
 
@@ -35,11 +42,15 @@ export class BaseResultComponent extends React.Component<BaseResultInterface, Re
             .then(response => response.json())
             .then(data => {
                 console.log(data)
+                var eventname = data.name !== null ? data.name : data.distance + "m " +  getSwimSytle(data.swimstyle);
                 this.setState({
-                    name: data.competition,
-                    heat: data.heat,
-                    event: data.event,
-                    id: data.heatid
+                    EventHeat: {
+                        name: eventname,
+                        heatnr: data.heat,
+                        eventnr: data.event,
+                    } ,
+                    id: data.heatid,
+                    lanes: data.lanes
                 })
             })
     }
@@ -49,10 +60,22 @@ export class BaseResultComponent extends React.Component<BaseResultInterface, Re
         return (
             <div>
                 <Grid container >
-                    <Grid item xs={5} >{this.state.name}</Grid>
-                    <Grid item xs={2} >{this.state.event}</Grid>
-                    <Grid item xs={2} >{this.state.heat}</Grid>
-                    <Grid item xs={3}>{this.state.id}</Grid>
+                    <HeaderEventHeatComponent
+                    EventHeat={this.state.EventHeat}
+                    />
+                    <Grid item xs={12}>{this.state.EventHeat.name}</Grid>
+                    <Grid item xs={12}>{this.state.id}</Grid>
+                    {
+                        this.state.lanes.map((lane, index) => (
+                            <FinishLaneComponent
+                                key={index}
+                                lane={lane}
+                                index={index}
+                                displayMode={'result'}
+                            />
+                        ))
+                    }
+                    
                 </Grid>
             </div >
         )

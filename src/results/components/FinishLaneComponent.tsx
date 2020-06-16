@@ -1,17 +1,14 @@
 import React from "react";
 
 import { swimmerData } from "../../shared/types/SwimmerData";
-import { LaneInterface } from "../interfaces/LaneInterface";
-import { LaneState } from "../state/LaneState";
+import { LaneInterface } from "../../shared/interfaces/LaneInterface";
+import { LaneState } from "../../shared/state/LaneState";
 
-import checkUndefined from "../utilities/checkUndefined";
-import getBirthYear from "../utilities/getBirthYear";
-import stringToBoolean from "../utilities/stringToBoolean";
-import StyledLane from "./images/StyledLane";
-import LapStyledLane from "./images/LapStyledLane";
-import FinishStyledLane from "./images/FinishStyledLane";
+import checkUndefined from "../../shared/utilities/checkUndefined";
+import getBirthYear from "../../shared/utilities/getBirthYear";
+import FinishStyledLane from "../../shared/components/images/FinishStyledLane";
 
-export class SingleLaneComponent extends React.Component<LaneInterface, LaneState>{
+export class FinishLaneComponent extends React.Component<LaneInterface, LaneState>{
 
   intervalId: NodeJS.Timeout;
   swimmer: swimmerData;
@@ -105,53 +102,27 @@ export class SingleLaneComponent extends React.Component<LaneInterface, LaneStat
       })
     }
 
-    if (stringToBoolean(this.props.lane.lap)) {
-      this.setState({
-        islaptime: true,
-        laptime: checkUndefined(this.props.lane.time),
-      })
-    } else {
-      this.setState({
-        islaptime: false,
-        place: checkUndefined(this.props.lane.place),
-        time: checkUndefined(this.props.lane.time),
-      })
-    }
+
+    this.setState({
+      islaptime: false,
+      place: checkUndefined(this.props.lane.place),
+      time: checkUndefined(this.props.lane.time),
+    })
 
   }
 
   getData() {
-    switch (this.props.displayMode) {
-      case "startlist":
-        return <StyledLane
-          swimmer={this.state.swimmerData}
-          lane={this.state.lane}
-          entrytime={this.state.entrytime}
-        />
-      case "race":
-        return this.getRaceData()
-      default:
-        return <p>no displaymode</p>
-    }
+    return this.getRaceData()
   }
   //paste in state
 
   getRaceData() {
-
-    if (this.state.islaptime) {
-      return <LapStyledLane
-        swimmer={this.state.swimmerData}
-        lane={this.state.lane}
-        time={this.state.laptime}
-      />
-    } else {
-      return <FinishStyledLane
-        swimmer={this.state.swimmerData}
-        lane={this.state.lane}
-        place={this.state.place}
-        time={this.state.time}
-      />
-    }
+    return <FinishStyledLane
+      swimmer={this.state.swimmerData}
+      lane={this.state.lane}
+      place={this.state.place}
+      time={this.state.time}
+    />
 
   }
 

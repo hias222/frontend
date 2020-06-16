@@ -5,7 +5,7 @@ import { FrontendState } from '../live//state/FrontendState';
 
 import { MessageFrontendComponent } from '../live/components/messages/MessageFrontendComponent';
 import { BaseFrontendComponent } from '../live/components/BaseFrontendComponent';
-import { eventHeat } from '../live/types/EventHeat';
+import { eventHeat } from '../shared/types/EventHeat';
 import { Container } from '@material-ui/core';
 
 export default class live extends React.Component<{}, FrontendState> {
