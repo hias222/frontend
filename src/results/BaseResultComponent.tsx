@@ -63,7 +63,9 @@ export class BaseResultComponent extends React.Component<BaseResultInterface, Re
                     },
                     id: data.heatid,
                     lanes: data.lanes,
-                    lastid: data.lastid
+                    lastid: data.lastid,
+                    nextid: data.nextid,
+                    time: data.creation_date
                 })
             })
     }
@@ -72,11 +74,14 @@ export class BaseResultComponent extends React.Component<BaseResultInterface, Re
 
         let baseurl = '/results'
         let backurl = '/results/' + this.state.lastid
-        let forwardurl = this.state.nextid !== undefined ? '/results/' + this.state.nextid : baseurl
+        let forwardurl = this.state.nextid !== undefined && this.state.nextid !== null ? '/results/' + this.state.nextid : baseurl
+
+        var d = this.state.time !== undefined ? new Date(this.state.time) : Date.now()
 
         return (
             <div>
                 <Grid container >
+                    <Grid item xs={12} alignContent={"flex-start"} >{d.toLocaleString()}</Grid>
                     <HeaderEventHeatComponent
                         EventHeat={this.state.EventHeat}
                     />
@@ -84,7 +89,6 @@ export class BaseResultComponent extends React.Component<BaseResultInterface, Re
                     <Grid item xs={4}>
                         <IconButton aria-label="back" href={backurl}>
                             <BackIcon />
-
                         </IconButton>
                     </Grid>
                     <Grid item xs={4}>
@@ -97,7 +101,6 @@ export class BaseResultComponent extends React.Component<BaseResultInterface, Re
                             <ForwardIcon />
                         </IconButton>
                     </Grid>
-
                     {
                         this.state.lanes.map((lane, index) => (
                             <FinishLaneComponent
