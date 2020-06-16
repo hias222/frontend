@@ -1,9 +1,13 @@
-import { Grid } from "@material-ui/core";
+import { Grid, IconButton } from "@material-ui/core";
 import React from "react";
 import { BaseResultInterface } from "../results/interfaces/BaseResultInterface";
 import { ResultState } from "./state/ResultState";
 import { FinishLaneComponent } from "./components/FinishLaneComponent";
 import { HeaderEventHeatComponent } from "../live/components/HeaderEventHeatComponent";
+
+import BackIcon from '@material-ui/icons/ArrowBackIosOutlined';
+import ForwardIcon from '@material-ui/icons/ArrowForwardIosOutlined';
+import HomeIcon from '@material-ui/icons/Home';
 
 import getSwimSytle from "../shared/utilities/getSwimStyles"
 
@@ -66,6 +70,10 @@ export class BaseResultComponent extends React.Component<BaseResultInterface, Re
 
     render() {
 
+        let baseurl = '/results'
+        let backurl = '/results/' + this.state.lastid
+        let forwardurl = this.state.nextid !== undefined ? '/results/' + this.state.nextid : baseurl
+
         return (
             <div>
                 <Grid container >
@@ -73,8 +81,22 @@ export class BaseResultComponent extends React.Component<BaseResultInterface, Re
                         EventHeat={this.state.EventHeat}
                     />
                     <Grid item xs={12}>{this.state.EventHeat.name}</Grid>
-                    <Grid item xs={12}>{this.state.id}</Grid>
-                    <Grid item xs={12}>{this.state.lastid}</Grid>
+                    <Grid item xs={4}>
+                        <IconButton aria-label="back" href={backurl}>
+                            <BackIcon />
+
+                        </IconButton>
+                    </Grid>
+                    <Grid item xs={4}>
+                        <IconButton aria-label="base" href={baseurl}>
+                            <HomeIcon />
+                        </IconButton>
+                    </Grid>
+                    <Grid item xs={4}>
+                        <IconButton aria-label="forward" href={forwardurl}>
+                            <ForwardIcon />
+                        </IconButton>
+                    </Grid>
 
                     {
                         this.state.lanes.map((lane, index) => (
