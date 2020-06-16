@@ -4,7 +4,7 @@ import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import LiveIcon from '@material-ui/icons/LiveTv';
 import SearchIcon from '@material-ui/icons/Search';
-import DownloadIcon from '@material-ui/icons/CloudDownload';
+import ResultIcon from '@material-ui/icons/Update';
 
 const useStyles = makeStyles({
     root: {
@@ -28,7 +28,7 @@ function Header() {
         >
             <BottomNavigationAction href="/live" label="Live" value="live" icon={<LiveIcon />} />
             <BottomNavigationAction href="/search" label="Search" value="search" icon={<SearchIcon />} />
-            <BottomNavigationAction href="/download" label="Downloads" value="download" icon={<DownloadIcon />} />
+            <BottomNavigationAction href="/results" label="Results" value="results" icon={<ResultIcon />} />
         </BottomNavigation>
     );
 }

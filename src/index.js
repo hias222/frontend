@@ -6,7 +6,7 @@ import * as serviceWorker from './serviceWorker';
 import Header from "./pages/Header"
 
 import search from "./pages/search";
-import download from "./pages/download";
+import results from "./pages/results";
 import live from "./pages/live";
 
 import { BrowserRouter, Route } from 'react-router-dom'
@@ -17,7 +17,7 @@ ReactDOM.render((
     <Route path="/" exact component={live} />
     <Route path="/search" component={search} />
     <Route path="/live" component={live} />
-    <Route path="/download" component={download} />
+    <Route path="/results" component={results} />
   </BrowserRouter>
 ), document.getElementById('root'))
 
