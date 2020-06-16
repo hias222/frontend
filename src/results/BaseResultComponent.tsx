@@ -28,9 +28,17 @@ export class BaseResultComponent extends React.Component<BaseResultInterface, Re
 
 
     componentDidMount() {
-        console.log("DataState: connect to " + this.backend_url + "/api/heat/all");
+        let apiurl;
 
-        fetch(this.backend_url + "/api/heat/all", {
+        if (this.props.id === undefined) {
+            apiurl = this.backend_url + "/api/heat/all"
+        } else {
+            apiurl = this.backend_url + "/api/heat/search/" + this.props.id
+        }
+
+        console.log("DataState: connect to " + apiurl);
+
+        fetch(apiurl, {
             method: 'GET', // *GET, POST, PUT, DELETE, etc.
             //mode: 'cors', // no-cors, *cors, same-origin
             headers: {
@@ -42,15 +50,16 @@ export class BaseResultComponent extends React.Component<BaseResultInterface, Re
             .then(response => response.json())
             .then(data => {
                 console.log(data)
-                var eventname = data.name !== null ? data.name : data.distance + "m " +  getSwimSytle(data.swimstyle);
+                var eventname = data.name !== null ? data.name : data.distance + "m " + getSwimSytle(data.swimstyle);
                 this.setState({
                     EventHeat: {
                         name: eventname,
                         heatnr: data.heat,
                         eventnr: data.event,
-                    } ,
+                    },
                     id: data.heatid,
-                    lanes: data.lanes
+                    lanes: data.lanes,
+                    lastid: data.lastid
                 })
             })
     }
@@ -61,10 +70,12 @@ export class BaseResultComponent extends React.Component<BaseResultInterface, Re
             <div>
                 <Grid container >
                     <HeaderEventHeatComponent
-                    EventHeat={this.state.EventHeat}
+                        EventHeat={this.state.EventHeat}
                     />
                     <Grid item xs={12}>{this.state.EventHeat.name}</Grid>
                     <Grid item xs={12}>{this.state.id}</Grid>
+                    <Grid item xs={12}>{this.state.lastid}</Grid>
+
                     {
                         this.state.lanes.map((lane, index) => (
                             <FinishLaneComponent
@@ -75,7 +86,7 @@ export class BaseResultComponent extends React.Component<BaseResultInterface, Re
                             />
                         ))
                     }
-                    
+
                 </Grid>
             </div >
         )
