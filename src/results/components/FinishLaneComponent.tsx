@@ -26,7 +26,7 @@ export class FinishLaneComponent extends React.Component<LaneInterface, LaneStat
     this.state = {
       lane: "",
       place: "",
-      time: "",
+      finishtime: "",
       laptime: "",
       islaptime: false,
       changed: Date.now(),
@@ -106,7 +106,7 @@ export class FinishLaneComponent extends React.Component<LaneInterface, LaneStat
     this.setState({
       islaptime: false,
       place: checkUndefined(this.props.lane.place),
-      time: checkUndefined(this.props.lane.time),
+      finishtime: checkUndefined(this.props.lane.finishtime),
     })
 
   }
@@ -121,7 +121,7 @@ export class FinishLaneComponent extends React.Component<LaneInterface, LaneStat
       swimmer={this.state.swimmerData}
       lane={this.state.lane}
       place={this.state.place}
-      time={this.state.time}
+      finishtime={this.state.finishtime}
     />
 
   }

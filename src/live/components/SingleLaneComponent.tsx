@@ -2,7 +2,7 @@ import React from "react";
 
 import { swimmerData } from "../../shared/types/SwimmerData";
 import { LaneInterface } from "../interfaces/LaneInterface";
-import { LaneState } from "../state/LaneState";
+import { LaneState } from "../../shared/state/LaneState";
 
 import checkUndefined from "../utilities/checkUndefined";
 import getBirthYear from "../utilities/getBirthYear";
@@ -29,7 +29,7 @@ export class SingleLaneComponent extends React.Component<LaneInterface, LaneStat
     this.state = {
       lane: "",
       place: "",
-      time: "",
+      finishtime: "",
       laptime: "",
       islaptime: false,
       changed: Date.now(),
@@ -108,13 +108,13 @@ export class SingleLaneComponent extends React.Component<LaneInterface, LaneStat
     if (stringToBoolean(this.props.lane.lap)) {
       this.setState({
         islaptime: true,
-        laptime: checkUndefined(this.props.lane.time),
+        laptime: checkUndefined(this.props.lane.finishtime),
       })
     } else {
       this.setState({
         islaptime: false,
         place: checkUndefined(this.props.lane.place),
-        time: checkUndefined(this.props.lane.time),
+        finishtime: checkUndefined(this.props.lane.finishtime),
       })
     }
 
@@ -142,14 +142,14 @@ export class SingleLaneComponent extends React.Component<LaneInterface, LaneStat
       return <LapStyledLane
         swimmer={this.state.swimmerData}
         lane={this.state.lane}
-        time={this.state.laptime}
+        finishtime={this.state.laptime}
       />
     } else {
       return <FinishStyledLane
         swimmer={this.state.swimmerData}
         lane={this.state.lane}
         place={this.state.place}
-        time={this.state.time}
+        finishtime={this.state.finishtime}
       />
     }
 

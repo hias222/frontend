@@ -54,6 +54,10 @@ export class BaseResultComponent extends React.Component<BaseResultInterface, Re
             .then(response => response.json())
             .then(data => {
                 console.log(data)
+                if(data.lanes === null || data.lanes === undefined){
+                    data.lanes = []
+                    console.log('empty lanes')
+                }
                 var eventname = data.name !== null ? data.name : data.distance + "m " + getSwimSytle(data.swimstyle);
                 this.setState({
                     EventHeat: {
@@ -65,7 +69,7 @@ export class BaseResultComponent extends React.Component<BaseResultInterface, Re
                     lanes: data.lanes,
                     lastid: data.lastid,
                     nextid: data.nextid,
-                    time: data.creation_date
+                    runtime: data.creation_date
                 })
             })
     }
@@ -76,7 +80,7 @@ export class BaseResultComponent extends React.Component<BaseResultInterface, Re
         let backurl = '/results/' + this.state.lastid
         let forwardurl = this.state.nextid !== undefined && this.state.nextid !== null ? '/results/' + this.state.nextid : baseurl
 
-        var d = this.state.time !== undefined ? new Date(this.state.time) : Date.now()
+        var d = this.state.runtime !== undefined ? new Date(this.state.runtime) : Date.now()
 
         return (
             <div>

@@ -50,7 +50,7 @@ export default class LapStyledLane extends React.Component<LaneData, {}> {
                 {correctName}
             </Grid>
             <Grid item xs={3} text-align={"center"} className={laneeven}>
-                {this.props.time}
+                {this.props.finishtime}
             </Grid>
         </Grid>;
 

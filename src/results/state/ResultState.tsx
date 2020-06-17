@@ -6,6 +6,6 @@ export type ResultState = {
   nextid?: string;
   EventHeat: eventHeat;
   lanes: string[];
-  time?: string;
+  runtime?: string;
 };
 
