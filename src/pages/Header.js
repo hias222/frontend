@@ -21,6 +21,8 @@ function Header() {
         setValue(newValue);
     };
 
+    console.log(process.env.REACT_APP_ENV_VERSION)
+
     return (
         <BottomNavigation
             value={value} onChange={handleChange} className={classes.root}
