@@ -1,4 +1,8 @@
 {
     "appService.defaultWebAppToDeploy": "/subscriptions/c7d4f7fe-53f6-4043-a10a-d574ccc6db26/resourceGroups/frontend/providers/Microsoft.Web/sites/swimfrontend",
-    "appService.deploySubpath": "build"
+    "appService.deploySubpath": "build",
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ]
 }
