@@ -16,7 +16,7 @@ export class BaseResultComponent extends React.Component<BaseResultInterface, Re
     backend_url: string;
     constructor(props: BaseResultInterface) {
         super(props);
-        var get_backend_url = process.env.REACT_APP_BACKEND_DIRECT === "true" ? "http://" + window.location.hostname + ":3000" : process.env.REACT_APP_BACKEND_URL
+        var get_backend_url = process.env.REACT_APP_BACKEND_DIRECT === "true" ? "http://" + window.location.hostname + ":3000" : process.env.REACT_APP_WS_DATAHUB
         this.backend_url = get_backend_url === undefined ? "http://" + window.location.hostname + ":3000" : get_backend_url
         this.state = {
             EventHeat: {
