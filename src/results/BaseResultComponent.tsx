@@ -7,7 +7,7 @@ import { HeaderEventHeatComponent } from "../live/components/HeaderEventHeatComp
 
 import BackIcon from '@material-ui/icons/ArrowBackIosOutlined';
 import ForwardIcon from '@material-ui/icons/ArrowForwardIosOutlined';
-import HomeIcon from '@material-ui/icons/Home';
+import RefreshIcon from '@material-ui/icons/Refresh';
 
 import getSwimSytle from "../shared/utilities/getSwimStyles"
 
@@ -54,7 +54,7 @@ export class BaseResultComponent extends React.Component<BaseResultInterface, Re
             .then(response => response.json())
             .then(data => {
                 console.log(data)
-                if(data.lanes === null || data.lanes === undefined){
+                if (data.lanes === null || data.lanes === undefined) {
                     data.lanes = []
                     console.log('empty lanes')
                 }
@@ -80,16 +80,22 @@ export class BaseResultComponent extends React.Component<BaseResultInterface, Re
         let backurl = '/results/' + this.state.lastid
         let forwardurl = this.state.nextid !== undefined && this.state.nextid !== null ? '/results/' + this.state.nextid : baseurl
 
+        let forwardisabled = this.state.nextid !== undefined && this.state.nextid !== null ? false : true
         var d = this.state.runtime !== undefined ? new Date(this.state.runtime) : Date.now()
 
+        const hour = new Intl.DateTimeFormat('de', { hour: '2-digit', minute: 'numeric', second: 'numeric' }).format(d)
+
+        // {d.toLocaleString()}
         return (
             <div>
                 <Grid container >
-                    <Grid item xs={12} alignContent={"flex-start"} >{d.toLocaleString()}</Grid>
+                    <Grid item xs={12} >{hour}</Grid>
                     <HeaderEventHeatComponent
                         EventHeat={this.state.EventHeat}
                     />
                     <Grid item xs={12}>{this.state.EventHeat.name}</Grid>
+                </Grid>
+                <Grid container justify="center">
                     <Grid item xs={4}>
                         <IconButton aria-label="back" href={backurl}>
                             <BackIcon />
@@ -97,14 +103,16 @@ export class BaseResultComponent extends React.Component<BaseResultInterface, Re
                     </Grid>
                     <Grid item xs={4}>
                         <IconButton aria-label="base" href={baseurl}>
-                            <HomeIcon />
+                            <RefreshIcon />
                         </IconButton>
                     </Grid>
                     <Grid item xs={4}>
-                        <IconButton aria-label="forward" href={forwardurl}>
+                        <IconButton disabled={forwardisabled} aria-label="forward" href={forwardurl}>
                             <ForwardIcon />
                         </IconButton>
                     </Grid>
+                </Grid>
+                <Grid container>
                     {
                         this.state.lanes.map((lane, index) => (
                             <FinishLaneComponent
