@@ -1,0 +1,4 @@
+{
+    "route": "/heats",
+    "allowedRoles": ["anonymous"]
+}

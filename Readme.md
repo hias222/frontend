@@ -1,5 +1,12 @@
 # frontend
 
+## Azure upload
+
+```bash
+az storage blob upload-batch -s /Users/matthiasfuchs/projects/schwimmen/frontend/build -d \$web --account-name wsfrontend
+az storage blob list --container-name wsfrontend --account-name wsfrontend --account-key xxxx
+```
+
 ## Available Scripts
 
 In the project directory, you can run:
