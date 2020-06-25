@@ -5,8 +5,8 @@ import * as serviceWorker from './serviceWorker';
 
 import Header from "./pages/Header"
 
-import search from "./pages/search";
-import Results from "./pages/results";
+import lists from "./pages/lists";
+import Heats from "./pages/heats";
 import live from "./pages/live";
 
 import { BrowserRouter, Route } from 'react-router-dom'
@@ -15,10 +15,10 @@ ReactDOM.render((
   <BrowserRouter >
     <Header />     
     <Route path="/" exact component={live} />
-    <Route path="/search" component={search} />
+    <Route path="/lists" component={lists} />
     <Route path="/live" component={live} />
-    <Route path="/results" exact component={Results} />
-    <Route path="/results/:id" render={(props) => <Results id={props.match.params.id} />} />
+    <Route path="/heats" exact component={Heats} />
+    <Route path="/heats/:id" render={(props) => <Heats id={props.match.params.id} />} />
   </BrowserRouter>
 ), document.getElementById('root'))
 

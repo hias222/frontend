@@ -1,6 +1,6 @@
 import { Grid, IconButton } from "@material-ui/core";
 import React from "react";
-import { BaseResultInterface } from "../results/interfaces/BaseResultInterface";
+import { BaseResultInterface } from "./interfaces/BaseResultInterface";
 import { ResultState } from "./state/ResultState";
 import { FinishLaneComponent } from "./components/FinishLaneComponent";
 import { HeaderEventHeatComponent } from "../live/components/HeaderEventHeatComponent";
@@ -11,7 +11,7 @@ import RefreshIcon from '@material-ui/icons/Refresh';
 
 import getSwimSytle from "../shared/utilities/getSwimStyles"
 
-export class BaseResultComponent extends React.Component<BaseResultInterface, ResultState> {
+export class BaseHeatsComponent extends React.Component<BaseResultInterface, ResultState> {
 
     backend_url: string;
     constructor(props: BaseResultInterface) {
@@ -76,11 +76,11 @@ export class BaseResultComponent extends React.Component<BaseResultInterface, Re
 
     render() {
 
-        let baseurl = '/results'
-        let backurl = '/results/' + this.state.lastid
-        let forwardurl = this.state.nextid !== undefined && this.state.nextid !== null ? '/results/' + this.state.nextid : baseurl
+        let baseurl = '/heats'
+        let backurl = '/heats/' + this.state.lastid
+        let forwardurl = this.state.nextid !== undefined && this.state.nextid !== null ? '/heats/' + this.state.nextid : baseurl
 
-        let forwardisabled = this.state.nextid !== undefined && this.state.nextid !== null ? false : true
+        var forwardisabled = this.state.nextid !== undefined && this.state.nextid !== null ? false : true
         var d = this.state.runtime !== undefined ? new Date(this.state.runtime) : Date.now()
 
         const hour = new Intl.DateTimeFormat('de', { hour: '2-digit', minute: 'numeric', second: 'numeric' }).format(d)

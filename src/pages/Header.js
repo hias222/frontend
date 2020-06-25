@@ -3,8 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import LiveIcon from '@material-ui/icons/LiveTv';
-import SearchIcon from '@material-ui/icons/Search';
-import ResultIcon from '@material-ui/icons/Update';
+import ListIcon from '@material-ui/icons/ListOutlined';
+import HeatsIcon from '@material-ui/icons/Update';
 
 const useStyles = makeStyles({
     root: {
@@ -29,8 +29,8 @@ function Header() {
             showLabels
         >
             <BottomNavigationAction href="/live" label="Live" value="live" icon={<LiveIcon />} />
-            <BottomNavigationAction href="/search" label="Search" value="search" icon={<SearchIcon />} />
-            <BottomNavigationAction href="/results" label="Results" value="results" icon={<ResultIcon />} />
+            <BottomNavigationAction href="/heats" label="Läufe" value="heats" icon={<HeatsIcon />} />
+            <BottomNavigationAction href="/lists" label="List" value="list" icon={<ListIcon />} />
         </BottomNavigation>
     );
 }
