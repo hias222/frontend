@@ -73,6 +73,7 @@ export class SingleLaneComponent extends React.Component<LaneInterface, LaneStat
   }
 
   updateData() {
+    
     if (this.props.lane.lastname !== undefined) {
       this.setState({
         swimmerData: {
@@ -137,6 +138,8 @@ export class SingleLaneComponent extends React.Component<LaneInterface, LaneStat
   //paste in state
 
   getRaceData() {
+
+  
 
     if (this.state.islaptime) {
       return <LapStyledLane

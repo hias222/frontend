@@ -103,7 +103,8 @@ export default class live extends React.Component<{}, FrontendState> {
                 this.mylane.push(LaneData)
             } else {
                 this.mylane[lane - 1 + this.correctValueForLaneNull] = (LaneData)
-                console.log(lane + ": change (" + this.correctValueForLaneNull + ")")
+                console.log(lane + ": lane change (" + this.correctValueForLaneNull + ")")
+                // console.log(LaneData)
             }
 
             this.setState({
@@ -155,7 +156,6 @@ export default class live extends React.Component<{}, FrontendState> {
                 displayFormat={"lcd"}
             />
         } else {
-
             webcontent = <BaseFrontendComponent
                 startdelayms={this.state.startdelayms}
                 EventHeat={this.state.eventHeat}

@@ -163,7 +163,7 @@ export class WsSocketState extends React.Component<WsSocketPropsInterface, WsSoc
       var newjsondata2 = { ...jsondata, ...JSON.parse(laptime2) }
       this.props.onLaneChange(jsondata.lane, newjsondata2)
 
-      if (jsondata.time === "undefined" || !jsondata.time) {
+      if (jsondata.finishtime === "undefined" || !jsondata.finishtime) {
         if (this.state.DisplayMode !== 'startlist' && this.state.DisplayMode !== 'race') {
           this.setDisplayMode('startlist')
         }
