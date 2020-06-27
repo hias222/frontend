@@ -95,24 +95,26 @@ export class BaseHeatsComponent extends React.Component<BaseResultInterface, Res
                     />
                     <Grid item xs={12}>{this.state.EventHeat.name}</Grid>
                 </Grid>
-                <Grid container justify="center">
-                    <Grid item xs={4}>
+                <Grid container xs={12} sm={12} md={12} justify="center">
+                    <Grid xs={1} sm={3} md={4}> </Grid>
+                    <Grid item xs={3} sm={2} md={1}>
                         <IconButton aria-label="back" href={backurl}>
                             <BackIcon />
                         </IconButton>
                     </Grid>
-                    <Grid item xs={4}>
+                    <Grid item xs={3}  sm={2} md={1}>
                         <IconButton aria-label="base" href={baseurl}>
                             <RefreshIcon />
                         </IconButton>
                     </Grid>
-                    <Grid item xs={4}>
+                    <Grid item xs={3}  sm={2} md={1}>
                         <IconButton disabled={forwardisabled} aria-label="forward" href={forwardurl}>
                             <ForwardIcon />
                         </IconButton>
                     </Grid>
+                    <Grid xs={2} sm={3} md={5}> </Grid>
                 </Grid>
-                <Grid container>
+                <Grid container spacing={1}>
                     {
                         this.state.lanes.map((lane, index) => (
                             <FinishLaneComponent

@@ -122,6 +122,7 @@ export class FinishLaneComponent extends React.Component<LaneInterface, LaneStat
       lane={this.state.lane}
       place={this.state.place}
       finishtime={this.state.finishtime}
+      entrytime={this.state.entrytime}
     />
 
   }

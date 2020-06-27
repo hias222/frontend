@@ -3,6 +3,7 @@ import classnames from 'classnames';
 import { LaneData } from "../../interfaces/lanedatainterface";
 import { Grid } from "@material-ui/core";
 import LaneNumberFinish from "./LaneNumberFinish";
+import getEntryTime from "../../../live/utilities/getEntryTime";
 
 export default class FinishStyledLane extends React.Component<LaneData, {}> {
 
@@ -15,7 +16,7 @@ export default class FinishStyledLane extends React.Component<LaneData, {}> {
 
     checkName() {
 
-        if (this.props.swimmer.name !== undefined && this.props.swimmer.name !== null ) {
+        if (this.props.swimmer.name !== undefined && this.props.swimmer.name !== null) {
             let namelength = 20;
             let sizeName = this.props.swimmer.name.length;
             let sizeLastName = (this.props.swimmer.firstName !== undefined) ? this.props.swimmer.firstName.length : 0
@@ -42,17 +43,19 @@ export default class FinishStyledLane extends React.Component<LaneData, {}> {
         let laneeven = classnames('laneeven');
         let correctName = this.checkName();
 
-        return <Grid container item xs={12}>
-            <Grid item xs={3} className={laneeven}>
+        return <Grid container item xs={12} sm={12} md={12}>
+            <Grid item xs={3} sm={2} md={2} className={laneeven}>
                 <LaneNumberFinish
                     laneNumber={this.props.lane}
                     place={this.props.place}
                 />
             </Grid>
-            <Grid item xs={6} className={laneeven}>
-                {correctName}
+            <Grid container item xs={6} sm={8} md={8} className={laneeven} spacing={0}>
+                <Grid item xs={12} sm={7} md={5}>{correctName}</Grid>
+                <Grid item xs={6} sm={5} md={2}>{this.props.swimmer.birthyear}</Grid>
+                <Grid item xs={12} sm={12} md={5}>{this.props.swimmer.clubname}</Grid>
             </Grid>
-            <Grid item xs={3} text-align={"center"} className={laneeven}>
+            <Grid item xs={3} sm={2} md={2} text-align={"center"} className={laneeven}>
                 {this.props.finishtime}
             </Grid>
         </Grid>;

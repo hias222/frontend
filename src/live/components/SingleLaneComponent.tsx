@@ -9,7 +9,7 @@ import getBirthYear from "../utilities/getBirthYear";
 import stringToBoolean from "../utilities/stringToBoolean";
 import StyledLane from "./images/StyledLane";
 import LapStyledLane from "./images/LapStyledLane";
-import FinishStyledLane from "./images/FinishStyledLane";
+import FinishStyledLane from "../../shared/components/images/FinishStyledLane";
 
 export class SingleLaneComponent extends React.Component<LaneInterface, LaneState>{
 
@@ -138,9 +138,6 @@ export class SingleLaneComponent extends React.Component<LaneInterface, LaneStat
   //paste in state
 
   getRaceData() {
-
-  
-
     if (this.state.islaptime) {
       return <LapStyledLane
         swimmer={this.state.swimmerData}

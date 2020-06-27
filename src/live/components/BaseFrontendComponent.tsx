@@ -27,7 +27,7 @@ export class BaseFrontendComponent extends React.Component<BaseFrontendInterface
                     EventHeat={this.props.EventHeat}
                     runningTime={this.props.runningTime}
                 />
-                <Grid container >
+                <Grid container spacing={1}>
                     {
                         this.props.lanes.map((lane, index) => (
                             <SingleLaneComponent
