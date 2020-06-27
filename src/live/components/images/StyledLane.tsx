@@ -44,13 +44,15 @@ export default class StyledLane extends React.Component<LaneData, {}> {
         let laneeven = classnames('laneeven');
         let correctName = this.checkName();
 
-        return <Grid container>
-            <Grid item xs={2} className={laneeven}>
+        return <Grid container item xs={12} sm={12} md={12}>
+            <Grid item xs={2} sm={1} md={1} className={laneeven}>
                 <LaneNumber
                     laneNumber={this.props.lane} />
             </Grid>
-            <Grid item xs={10} className={laneeven}>
-                {correctName} ({this.props.swimmer.birthyear})
+            <Grid container item xs={10} sm={11} md={11} className={laneeven} spacing={0}>
+                <Grid item xs={12} sm={7} md={5}>{correctName}</Grid>
+                <Grid item xs={6} sm={5} md={2}>{this.props.swimmer.birthyear}</Grid>
+                <Grid item xs={12} sm={12} md={5}>{this.props.swimmer.clubname}</Grid>
             </Grid>
         </Grid>
     }
