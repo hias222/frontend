@@ -1,9 +1,11 @@
 import React from "react";
 import { StartStopComponent } from "./StartStopComponent";
 import { BaseFrontendInterface } from "../interfaces/BaseFrontendInterface";
-import { HeaderEventHeatComponent } from "./HeaderEventHeatComponent";
+import { HeaderEventHeatComponent } from "../../shared/components/HeaderEventHeatComponent";
 import { SingleLaneComponent } from "./SingleLaneComponent";
 import { Grid } from "@material-ui/core";
+
+import classnames from 'classnames';
 
 export class BaseFrontendComponent extends React.Component<BaseFrontendInterface, {}> {
 
@@ -17,17 +19,22 @@ export class BaseFrontendComponent extends React.Component<BaseFrontendInterface
 
     render() {
 
+        let heatheadertime = classnames("heatheadertime")
+
         return (
             <div>
                 <HeaderEventHeatComponent
                     EventHeat={this.props.EventHeat}
                 />
-                <StartStopComponent
-                    startdelayms={this.props.startdelayms}
-                    EventHeat={this.props.EventHeat}
-                    runningTime={this.props.runningTime}
-                />
+
                 <Grid container spacing={1}>
+                    <Grid item xs={12} className={heatheadertime}>
+                        <StartStopComponent
+                            startdelayms={this.props.startdelayms}
+                            EventHeat={this.props.EventHeat}
+                            runningTime={this.props.runningTime}
+                        />
+                    </Grid>
                     {
                         this.props.lanes.map((lane, index) => (
                             <SingleLaneComponent

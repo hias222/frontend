@@ -1,8 +1,6 @@
-import React from "react";
+import React from "react"
 import { StartStopInterface } from "../interfaces/StartStopInterface";
 import { StartStopState } from "../state/StartStopState";
-import { Grid } from "@material-ui/core";
-import classnames from 'classnames';
 
 
 export class StartStopComponent extends React.Component<StartStopInterface, StartStopState> {
@@ -101,7 +99,7 @@ export class StartStopComponent extends React.Component<StartStopInterface, Star
             this.setState({
                 runningTime: this.props.runningTime
             })
-            
+
         }
 
     }
@@ -114,16 +112,10 @@ export class StartStopComponent extends React.Component<StartStopInterface, Star
 
 
     render() {
-        let header_time = classnames('header_time');
-        let heatevent = classnames('heatevent');
-
         return (
-            <Grid container spacing={1} className={heatevent} >
-                <Grid item xs={6}>{this.props.EventHeat.name}</Grid>
-                <Grid item xs={6} className={header_time}>
-                    {this.format(this.state.displaytime)}
-                </Grid>
-            </Grid>
-        );
+            <div>
+                {this.format(this.state.displaytime)}
+            </div> 
+            )
     }
 }

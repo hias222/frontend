@@ -4,7 +4,6 @@ import { LaneData } from "../../interfaces/lanedatainterface";
 import { Grid } from "@material-ui/core";
 import PoolIcon from '@material-ui/icons/Pool';
 import LaneNumber from "./LaneNumber";
-import getEntryTime from "../../../shared/utilities/getEntryTime";
 export default class LapStyledLane extends React.Component<LaneData, {}> {
 
     box_height: number;

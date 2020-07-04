@@ -3,7 +3,11 @@ import { BaseHeatsComponent } from '../heats/BaseHeatsComponent';
 import { Container } from '@material-ui/core';
 import { ResultInterface } from '../heats/interfaces/ResultInterface';
 
-export default class heats extends React.Component<ResultInterface, {}> {
+export type HeatsState = {
+    isLoading: boolean;
+};
+
+export default class heats extends React.Component<ResultInterface, HeatsState> {
 
     render() {
         return (
@@ -14,5 +18,4 @@ export default class heats extends React.Component<ResultInterface, {}> {
             </Container>
         )
     }
-
 }

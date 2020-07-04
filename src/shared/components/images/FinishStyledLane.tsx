@@ -1,9 +1,7 @@
 import React from "react";
-import classnames from 'classnames';
 import { LaneData } from "../../interfaces/lanedatainterface";
 import { Grid } from "@material-ui/core";
 import LaneNumberFinish from "./LaneNumberFinish";
-import getEntryTime from "../../../live/utilities/getEntryTime";
 
 export default class FinishStyledLane extends React.Component<LaneData, {}> {
 
@@ -40,22 +38,21 @@ export default class FinishStyledLane extends React.Component<LaneData, {}> {
     }
 
     render() {
-        let laneeven = classnames('laneeven');
         let correctName = this.checkName();
 
         return <Grid container item xs={12} sm={12} md={12}>
-            <Grid item xs={3} sm={2} md={2} className={laneeven}>
+            <Grid item xs={3} sm={2} md={2}>
                 <LaneNumberFinish
                     laneNumber={this.props.lane}
                     place={this.props.place}
                 />
             </Grid>
-            <Grid container item xs={6} sm={8} md={8} className={laneeven} spacing={0}>
+            <Grid container item xs={6} sm={8} md={8} spacing={0}>
                 <Grid item xs={12} sm={7} md={5}>{correctName}</Grid>
                 <Grid item xs={6} sm={5} md={2}>{this.props.swimmer.birthyear}</Grid>
                 <Grid item xs={12} sm={12} md={5}>{this.props.swimmer.clubname}</Grid>
             </Grid>
-            <Grid item xs={3} sm={2} md={2} text-align={"center"} className={laneeven}>
+            <Grid item xs={3} sm={2} md={2} text-align={"center"} >
                 {this.props.finishtime}
             </Grid>
         </Grid>;

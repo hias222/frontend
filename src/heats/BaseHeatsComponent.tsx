@@ -3,7 +3,11 @@ import React from "react";
 import { BaseResultInterface } from "./interfaces/BaseResultInterface";
 import { ResultState } from "./state/ResultState";
 import { FinishLaneComponent } from "./components/FinishLaneComponent";
-import { HeaderEventHeatComponent } from "../live/components/HeaderEventHeatComponent";
+import { HeaderEventHeatComponent } from "../shared/components/HeaderEventHeatComponent";
+
+import LinearProgress from '@material-ui/core/LinearProgress';
+
+import classnames from 'classnames';
 
 import BackIcon from '@material-ui/icons/ArrowBackIosOutlined';
 import ForwardIcon from '@material-ui/icons/ArrowForwardIosOutlined';
@@ -16,9 +20,12 @@ export class BaseHeatsComponent extends React.Component<BaseResultInterface, Res
     backend_url: string;
     constructor(props: BaseResultInterface) {
         super(props);
+        this.loadBackendData = this.loadBackendData.bind(this)
+        this.startLoadingdata = this.startLoadingdata.bind(this)
         var get_backend_url = process.env.REACT_APP_BACKEND_DIRECT === "true" ? "http://" + window.location.hostname + ":3000" : process.env.REACT_APP_WS_DATAHUB
         this.backend_url = get_backend_url === undefined ? "http://" + window.location.hostname + ":3000" : get_backend_url
         this.state = {
+            loading: true,
             EventHeat: {
                 name: '',
                 eventnr: '0',
@@ -30,27 +37,43 @@ export class BaseHeatsComponent extends React.Component<BaseResultInterface, Res
         }
     }
 
+    startLoadingdata() {
+        var eventname = this.state.EventHeat.name;
+        return new Promise((resolve, reject) => {
+            this.setState({
+                loading: true,
+                lanes: [],
+                EventHeat: {
+                    name: eventname,
+                    heatnr: '',
+                    eventnr: '',
+                },
+            }, () => {
+                return resolve('ready')
+            })
+        })
+    }
 
-    componentDidMount() {
-        let apiurl;
+    loadBackendData(loadid: string | undefined) {
+        let apiurl: string;
 
-        if (this.props.id === undefined) {
+        if (loadid === undefined) {
             apiurl = this.backend_url + "/api/heat/all"
         } else {
-            apiurl = this.backend_url + "/api/heat/search/" + this.props.id
+            apiurl = this.backend_url + "/api/heat/search/" + loadid
         }
 
         console.log("DataState: connect to " + apiurl);
 
-        fetch(apiurl, {
-            method: 'GET', // *GET, POST, PUT, DELETE, etc.
-            //mode: 'cors', // no-cors, *cors, same-origin
-            headers: {
-                'Content-Type': 'application/json'
-                // 'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            cache: 'no-cache'
-        })
+        this.startLoadingdata()
+            .then(() =>
+                fetch(apiurl, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    cache: 'no-cache'
+                }))
             .then(response => response.json())
             .then(data => {
                 console.log(data)
@@ -60,6 +83,7 @@ export class BaseHeatsComponent extends React.Component<BaseResultInterface, Res
                 }
                 var eventname = data.name !== null ? data.name : data.distance + "m " + getSwimSytle(data.swimstyle);
                 this.setState({
+                    loading: false,
                     EventHeat: {
                         name: eventname,
                         heatnr: data.heat,
@@ -72,13 +96,19 @@ export class BaseHeatsComponent extends React.Component<BaseResultInterface, Res
                     runtime: data.creation_date
                 })
             })
+
+    }
+
+    componentDidMount() {
+        this.loadBackendData(this.props.id);
     }
 
     render() {
 
-        let baseurl = '/heats'
-        let backurl = '/heats/' + this.state.lastid
-        let forwardurl = this.state.nextid !== undefined && this.state.nextid !== null ? '/heats/' + this.state.nextid : baseurl
+        //let baseurl = '/heats'
+        let heatheadertime = classnames("heatheadertime")
+        // let backurl = '/heats/' + this.state.lastid
+        // let forwardurl = this.state.nextid !== undefined && this.state.nextid !== null ? '/heats/' + this.state.nextid : baseurl
 
         var forwardisabled = this.state.nextid !== undefined && this.state.nextid !== null ? false : true
         var d = this.state.runtime !== undefined ? new Date(this.state.runtime) : Date.now()
@@ -88,33 +118,43 @@ export class BaseHeatsComponent extends React.Component<BaseResultInterface, Res
         // {d.toLocaleString()}
         return (
             <div>
-                <Grid container >
-                    <Grid item xs={12} >{hour}</Grid>
-                    <HeaderEventHeatComponent
-                        EventHeat={this.state.EventHeat}
-                    />
-                    <Grid item xs={12}>{this.state.EventHeat.name}</Grid>
-                </Grid>
-                <Grid container xs={12} sm={12} md={12} justify="center">
-                    <Grid xs={1} sm={3} md={4}> </Grid>
+
+                <Grid container>
+                    <Grid item xs={1} sm={3} md={4}> </Grid>
                     <Grid item xs={3} sm={2} md={1}>
-                        <IconButton aria-label="back" href={backurl}>
+                        <IconButton aria-label="back"
+                            onClick={() => { this.loadBackendData(this.state.lastid) }}
+                        >
                             <BackIcon />
                         </IconButton>
                     </Grid>
-                    <Grid item xs={3}  sm={2} md={1}>
-                        <IconButton aria-label="base" href={baseurl}>
+                    <Grid item xs={3} sm={2} md={1}>
+                        <IconButton aria-label="base" 
+                        onClick={() => { this.loadBackendData(undefined) }}
+                        >
                             <RefreshIcon />
                         </IconButton>
                     </Grid>
-                    <Grid item xs={3}  sm={2} md={1}>
-                        <IconButton disabled={forwardisabled} aria-label="forward" href={forwardurl}>
+                    <Grid item xs={3} sm={2} md={1}>
+                        <IconButton disabled={forwardisabled}
+                            onClick={() => { this.loadBackendData(this.state.nextid) }}
+                            aria-label="forward" >
                             <ForwardIcon />
                         </IconButton>
                     </Grid>
-                    <Grid xs={2} sm={3} md={5}> </Grid>
+                    <Grid item xs={2} sm={3} md={5}> </Grid>
                 </Grid>
+
+                <Grid container >
+                    <HeaderEventHeatComponent
+                        EventHeat={this.state.EventHeat}
+                    />
+                </Grid>
+                <Grid className={heatheadertime} >{hour}</Grid>
+                {this.state.loading ? <LinearProgress /> : <div></div>}
                 <Grid container spacing={1}>
+
+
                     {
                         this.state.lanes.map((lane, index) => (
                             <FinishLaneComponent
