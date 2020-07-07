@@ -30,9 +30,9 @@ export default class live extends React.Component<{}, FrontendState> {
         this.onRunningTimeChange = this.onRunningTimeChange.bind(this);
 
         this.evenHeat = {
-            name: "new",
-            heatnr: "0",
-            eventnr: "0"
+            name: "",
+            heatnr: "",
+            eventnr: ""
         }
         this.state = {
             startdelayms: 0,
@@ -40,7 +40,7 @@ export default class live extends React.Component<{}, FrontendState> {
             racerunning: false,
             eventHeat: this.evenHeat,
             lanes: [],
-            displayMode: "race",
+            displayMode: "message",
             MessageText: "",
             MessageTime: "",
             VideoVersion: ""

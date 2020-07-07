@@ -4,7 +4,14 @@ import { WsSocketPropsInterface } from "../interfaces/WsSocketPropsInterface";
 import socketIOClient from "socket.io-client";
 import { WsSocketPropsState } from "../state/WsSocketPropsState";
 
+import UnpluggedIcon from '@material-ui/icons/WifiOff';
+import PluggedIcon from '@material-ui/icons/Wifi';
+
 import getSwimStyles from '../utilities/getSwimStyles';
+import { Grid } from "@material-ui/core";
+
+import classnames from 'classnames';
+import { purple,blue } from '@material-ui/core/colors';
 
 export class WsSocketState extends React.Component<WsSocketPropsInterface, WsSocketPropsState>
 {
@@ -203,9 +210,17 @@ export class WsSocketState extends React.Component<WsSocketPropsInterface, WsSoc
   }
 
   render() {
-    var webcontent = "";
+    let heatheadertime = classnames("heatheadertime")
+    var webcontent;
     if (!this.state.WsConnected) {
-      webcontent = "connection Error";
+      webcontent = <Grid container>
+        <Grid item xs={12} className={heatheadertime}><UnpluggedIcon style={{ color: purple[500] }}></UnpluggedIcon> </Grid>
+        <Grid item xs={12}> keine Verbindung zur Zeitmessung</Grid>
+      </Grid>;
+    } else {
+      webcontent = webcontent = <Grid container>
+      <Grid item xs={12} className={heatheadertime}><PluggedIcon style={{ color: blue[500] }}/> </Grid>
+    </Grid>;
     }
     return (
       <div>

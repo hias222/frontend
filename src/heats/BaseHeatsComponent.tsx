@@ -15,6 +15,8 @@ import RefreshIcon from '@material-ui/icons/Refresh';
 
 import getSwimSytle from "../shared/utilities/getSwimStyles"
 
+import { blue } from '@material-ui/core/colors';
+
 export class BaseHeatsComponent extends React.Component<BaseResultInterface, ResultState> {
 
     backend_url: string;
@@ -151,10 +153,8 @@ export class BaseHeatsComponent extends React.Component<BaseResultInterface, Res
                     />
                 </Grid>
                 <Grid className={heatheadertime} >{hour}</Grid>
-                {this.state.loading ? <LinearProgress /> : <div></div>}
+                {this.state.loading ? <LinearProgress style={{ backgroundColor: blue[500] }}/> : <div></div>}
                 <Grid container spacing={1}>
-
-
                     {
                         this.state.lanes.map((lane, index) => (
                             <FinishLaneComponent
