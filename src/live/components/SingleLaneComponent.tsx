@@ -44,7 +44,6 @@ export class SingleLaneComponent extends React.Component<LaneInterface, LaneStat
 
   componentDidMount() {
     this.updateData();
-
   }
 
   componentWillUnmount() {
