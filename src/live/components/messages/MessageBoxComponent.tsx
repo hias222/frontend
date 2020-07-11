@@ -36,15 +36,15 @@ export class MessageBoxComponent extends React.Component<MessageBox, MessageStat
         var strmessage = this.state.Message.toString();
         var lines = strmessage.split('\\n');
         webcontent = <Grid container className={messageTextClass}>
-            {lines.map((msg, index) => (
-                <Grid item xs={12}>
-                    {msg}
-                </Grid>
-            ))}
-            <Grid item xs={12}>
-<br></br>
+            <Grid item xs={12} sm={6} md={6} >
+                {lines.map((msg, index) => (
+                    <Grid item xs={12}>
+                        {msg}
+                    </Grid>
+                ))}
             </Grid>
-            <Grid item xs={12}>
+           
+            <Grid item xs={12} sm={6} md={6} className={messageTextClass}>
                 <BoardClock
                     type={"123"}
                     unixcompetitiontime={this.props.MessageTime} />

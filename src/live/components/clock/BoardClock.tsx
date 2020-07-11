@@ -3,7 +3,7 @@ import React from 'react'
 import Clock from 'react-clock'
 //import Clock from 'react-clock';
 
-// import classnames from 'classnames';
+import classnames from 'classnames';
 
 
 interface ClockInterface {
@@ -17,15 +17,19 @@ export type ClockState = {
     hourHandWidth: number,
     minuteHandWidth: number,
     datestart: number,
-    size: number,
     timediff: number,
-    type: string
+    type: string,
+    dimensions: {
+        width: number,
+        height: number
+    }
 };
 
 
 export default class BoardClock extends React.Component<ClockInterface, ClockState> {
 
     clocktimerid: any
+    myInput: any
 
     constructor(props: ClockInterface) {
         super(props);
@@ -33,17 +37,22 @@ export default class BoardClock extends React.Component<ClockInterface, ClockSta
         this.setClock = this.setClock.bind(this)
         this.clocktimer = this.clocktimer.bind(this)
         this.startTimer = this.startTimer.bind(this)
+        this.setClockSize = this.setClockSize.bind(this)
         this.restartMessage = this.restartMessage.bind(this)
+        this.myInput = React.createRef()
 
         this.state = {
-            unixcompetitiontime: 0,
+            unixcompetitiontime: 1,
             startcompetition: 0,
             hourHandWidth: 5,
             minuteHandWidth: 5,
-            size: 200,
             timediff: 0,
             datestart: Date.now(),
-            type: "0"
+            type: "0",
+            dimensions: {
+                width: 100,
+                height: 100
+            }
         }
 
     }
@@ -68,13 +77,8 @@ export default class BoardClock extends React.Component<ClockInterface, ClockSta
 
         if (this.props.type === 'message') {
             this.setState({
-                size: 200,
                 hourHandWidth: 4,
                 minuteHandWidth: 4
-            })
-        } else {
-            this.setState({
-                size: 290
             })
         }
     }
@@ -91,15 +95,29 @@ export default class BoardClock extends React.Component<ClockInterface, ClockSta
         this.setState({
             timediff: Date.now() - this.state.datestart
         })
+        this.setClockSize()
     }
 
     componentWillUnmount() {
         clearInterval(this.clocktimerid);
     }
 
+    setClockSize() {
+        var calcwidth = window.screen.width > 800 ? 350 : (window.screen.width * 0.8 - 100)
+        var calcwidth2 = (window.screen.height - 100) < calcwidth ? (window.screen.height - 100) : calcwidth
+        var calcwidth3 = calcwidth2 > 350 ? 350 : calcwidth2
+        this.setState({
+            dimensions: {
+                width: calcwidth3,
+                height: window.screen.height,
+            },
+        });
+    }
+
     componentDidMount() {
+        this.setClockSize();
         this.setClock();
-        this.startTimer();
+        this.startTimer()
         this.setState({
             type: this.props.type
         })
@@ -131,50 +149,33 @@ export default class BoardClock extends React.Component<ClockInterface, ClockSta
         this.startTimer();
     }
 
-    /*
-    splitMessageLines() {
-        var webcontent = "";
-        let staticmessagetext_main = classnames('staticmessagetext_main');
-
-        var strmessage = this.props.message.toString();
-        var lines = strmessage.split('\\n');
-
-        if (this.props.type === 'message') {
-
-            webcontent = <table >
-                <tbody>
-                    {lines.map((msg, index) => (
-                        <tr className={staticmessagetext_main} key={index}>
-                            <td>{msg}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-            return webcontent;
-        }
-
-        return webcontent
-    }
-    */
-
     render() {
 
-        let clocktime = this.state.timediff + this.state.unixcompetitiontime;
+        let clocktime = (this.state.unixcompetitiontime * 1000) + this.state.timediff;
         let unixtoshow = isNaN(clocktime) ? 1 : clocktime
         let newclocktime = new Date(unixtoshow);
 
-        console.log("start clock " + unixtoshow)
+        let staticmessagetable = classnames('staticmessagetable');
+
+        //console.log("start clock " + unixtoshow + " diff " + this.state.timediff)
 
         return (
-            <div>
-                <Clock
-                    value={newclocktime}
-                    size={this.state.size}
-                    hourHandWidth={this.state.hourHandWidth}
-                    minuteHandWidth={this.state.minuteHandWidth}
-                    className="message_clock"
-                />
-            </div>
+            <table className={staticmessagetable}>
+                <tbody>
+                    <tr >
+                        <td align='center'>
+                            <Clock
+                                value={newclocktime}
+                                size={this.state.dimensions.width}
+                                hourHandWidth={this.state.hourHandWidth}
+                                minuteHandWidth={this.state.minuteHandWidth}
+                                renderNumbers={false}
+                                className="message_clock"
+                            />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         )
     }
 };

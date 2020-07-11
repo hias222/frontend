@@ -1,4 +1,5 @@
 $farbeschrift: black;
+$farbeuhr: rgb(33, 150, 243);
 
 .heatheadertime {
     text-align: right;
@@ -13,40 +14,35 @@ $farbeschrift: black;
 
 .messagetext{
     text-align: center;
+    align-content: center;
 }
 
-
-//@at-root
 .message_clock {
-    color: $farbeschrift;
-    text-align: center;
-    font-size: 1.2em;
-
     .react-clock {
 
         &__face {
-            border-color: $farbeschrift;  
+            border-color: $farbeuhr;  
           }
 
         &__mark {
             &__body {
-                background-color: $farbeschrift;
+                background-color: $farbeuhr;
               }
           }
         
         &__minute-mark {
-            background-color: $farbeschrift;
+            background-color: $farbeuhr;
         }
 
         &__hand {
           &__body {
-            background-color: $farbeschrift;
+            background-color: $farbeuhr;
           }
 
         }
         &__hour-hand {
           &__body {
-              background-color: $farbeschrift;
+              background-color: $farbeuhr;
           }
 
         }
@@ -63,7 +59,6 @@ $farbeschrift: black;
 
 .ticker-move {
     display: inline-block;
-    width: 300px;
     white-space: nowrap;
     //padding-right: px;
     animation-iteration-count: infinite;
@@ -92,4 +87,9 @@ $farbeschrift: black;
     border-spacing: 0px;
     padding: 0px;
     border-collapse: collapse;
+}
+
+.staticmessagetable{
+    border-spacing: 0;
+    width: 100%;
 }
