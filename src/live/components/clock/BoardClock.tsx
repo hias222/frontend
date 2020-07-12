@@ -157,7 +157,7 @@ export default class BoardClock extends React.Component<ClockInterface, ClockSta
 
         let staticmessagetable = classnames('staticmessagetable');
 
-        //console.log("start clock " + unixtoshow + " diff " + this.state.timediff)
+        console.log("start clock " + unixtoshow + " diff " + this.state.timediff)
 
         return (
             <table className={staticmessagetable}>
