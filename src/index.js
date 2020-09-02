@@ -12,7 +12,7 @@ import live from "./pages/live";
 import { BrowserRouter, Route } from 'react-router-dom'
 
 ReactDOM.render((
-  <BrowserRouter >
+  <BrowserRouter basename="/frontend" >
     <Header />     
     <Route path="/" exact component={live} />
     <Route path="/lists" component={lists} />
