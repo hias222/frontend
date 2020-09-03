@@ -28,9 +28,9 @@ function Header() {
             value={value} onChange={handleChange} className={classes.root}
             showLabels
         >
-            <BottomNavigationAction href="/live" label="Live" value="live" icon={<LiveIcon />} />
-            <BottomNavigationAction href="/heats" label="Läufe" value="heats" icon={<HeatsIcon />} />
-            <BottomNavigationAction href="/lists" label="List" value="list" icon={<ListIcon />} />
+            <BottomNavigationAction href="/frontend/live" label="Live" value="live" icon={<LiveIcon />} />
+            <BottomNavigationAction href="/frontend/heats" label="Läufe" value="heats" icon={<HeatsIcon />} />
+            <BottomNavigationAction href="/frontend/lists" label="List" value="list" icon={<ListIcon />} />
         </BottomNavigation>
     );
 }
