@@ -24,8 +24,9 @@ export class BaseHeatsComponent extends React.Component<BaseResultInterface, Res
         super(props);
         this.loadBackendData = this.loadBackendData.bind(this)
         this.startLoadingdata = this.startLoadingdata.bind(this)
-        var get_backend_url = process.env.REACT_APP_BACKEND_DIRECT === "true" ? "http://" + window.location.hostname + ":3000" : process.env.REACT_APP_WS_DATAHUB
-        this.backend_url = get_backend_url === undefined ? "http://" + window.location.hostname + ":3000" : get_backend_url
+        var get_backend_port = process.env.REACT_APP_BACKEND_PORT === undefined ? "3000" : process.env.REACT_APP_BACKEND_PORT
+        var get_backend_url = process.env.REACT_APP_BACKEND_DIRECT === "true" ? "http://" + window.location.hostname + ":" + get_backend_port : process.env.REACT_APP_WS_DATAHUB
+        this.backend_url = get_backend_url === undefined ? "http://" + window.location.hostname + ":" + get_backend_port : get_backend_url
         this.state = {
             loading: true,
             EventHeat: {
@@ -131,8 +132,8 @@ export class BaseHeatsComponent extends React.Component<BaseResultInterface, Res
                         </IconButton>
                     </Grid>
                     <Grid item xs={3} sm={2} md={1}>
-                        <IconButton aria-label="base" 
-                        onClick={() => { this.loadBackendData(undefined) }}
+                        <IconButton aria-label="base"
+                            onClick={() => { this.loadBackendData(undefined) }}
                         >
                             <RefreshIcon />
                         </IconButton>
@@ -153,7 +154,7 @@ export class BaseHeatsComponent extends React.Component<BaseResultInterface, Res
                     />
                 </Grid>
                 <Grid className={heatheadertime} >{hour}</Grid>
-                {this.state.loading ? <LinearProgress style={{ backgroundColor: blue[500] }}/> : <div></div>}
+                {this.state.loading ? <LinearProgress style={{ backgroundColor: blue[500] }} /> : <div></div>}
                 <Grid container spacing={1}>
                     {
                         this.state.lanes.map((lane, index) => (
