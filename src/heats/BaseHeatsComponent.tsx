@@ -25,7 +25,7 @@ export class BaseHeatsComponent extends React.Component<BaseResultInterface, Res
         this.loadBackendData = this.loadBackendData.bind(this)
         this.startLoadingdata = this.startLoadingdata.bind(this)
         var get_backend_port = process.env.REACT_APP_API_DB_PORT === undefined ? "3000" : process.env.REACT_APP_API_DB_PORT
-        var get_backend_url = process.env.REACT_APP_API_DB_DIRECT === "true" ? "http://" + window.location.hostname + ":" + get_backend_port : process.env.REACT_APP_WS_API_DB
+        var get_backend_url = process.env.REACT_APP_API_DB_DIRECT === "true" ? "http://" + window.location.hostname + ":" + get_backend_port : process.env.REACT_APP_WS_API_DB_URL
         this.backend_url = get_backend_url === undefined ? "http://" + window.location.hostname + ":" + get_backend_port : get_backend_url
         this.state = {
             loading: true,
