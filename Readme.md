@@ -77,3 +77,10 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 ## deploy to azure
 
 <https://medium.com/@to_pe/deploying-create-react-app-on-microsoft-azure-c0f6686a4321>
+
+## ToDos
+
+* hidden grid for mobile <https://material-ui.com/components/hidden/>
+* colored activation of tabs
+* startup not with clock
+* welcome text
