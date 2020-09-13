@@ -18,7 +18,6 @@ ReactDOM.render((
     <Route path="/lists" component={lists} />
     <Route path="/live" component={live} />
     <Route path="/heats" exact component={Heats} />
-    <Route path="/heats/:id" render={(props) => <Heats id={props.match.params.id} />} />
   </BrowserRouter>
 ), document.getElementById('root'))
 
