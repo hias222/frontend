@@ -23,10 +23,10 @@ export class BaseHeatsComponent extends React.Component<BaseResultInterface, Res
     constructor(props: BaseResultInterface) {
         super(props);
         this.loadBackendData = this.loadBackendData.bind(this)
-        this.startLoadingdata = this.startLoadingdata.bind(this)
+        this.startLoadingdata = this.startLoadingdata.bind(this)    
         var get_backend_port = process.env.REACT_APP_API_DB_PORT === undefined ? "3000" : process.env.REACT_APP_API_DB_PORT
-        var get_backend_url = process.env.REACT_APP_API_DB_DIRECT === "true" ? "http://" + window.location.hostname + ":" + get_backend_port : process.env.REACT_APP_WS_API_DB_URL
-        this.backend_url = get_backend_url === undefined ? "http://" + window.location.hostname + ":" + get_backend_port : get_backend_url
+        var get_backend_url = process.env.REACT_APP_API_DB_DIRECT === "true" ? window.location.protocol + "//" + window.location.hostname + ":" + window.location.port  : process.env.REACT_APP_WS_API_DB_URL
+        this.backend_url = get_backend_url === undefined ? window.location.protocol + "//" + window.location.hostname + ":" + get_backend_port : get_backend_url
         this.state = {
             loading: true,
             EventHeat: {
@@ -61,9 +61,9 @@ export class BaseHeatsComponent extends React.Component<BaseResultInterface, Res
         let apiurl: string;
 
         if (loadid === undefined) {
-            apiurl = this.backend_url + "/api/heat/all"
+            apiurl = this.backend_url + "/datahub/heat/all"
         } else {
-            apiurl = this.backend_url + "/api/heat/search/" + loadid
+            apiurl = this.backend_url + "/datahub/heat/search/" + loadid
         }
 
         console.log("DataState: connect to " + apiurl);

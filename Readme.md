@@ -7,6 +7,33 @@ az storage blob upload-batch -s /Users/matthiasfuchs/projects/schwimmen/frontend
 az storage blob list --container-name wsfrontend --account-name wsfrontend --account-key xxxx
 ```
 
+## docker install
+
+```bash
+# start local docker
+
+# docker build -t <your username>/node-web-app . 
+npm run build
+docker build -t frontend .
+
+docker run --name=socket -p 80:80 --rm  frontend
+
+docker images
+
+```
+
+
+## Docker hub
+
+```bash
+docker login
+
+docker tag frontend hias222/frontend:0.1.0
+docker push hias222/frontend:0.1.0
+
+```
+
+
 ## Available Scripts
 
 In the project directory, you can run:
