@@ -4,5 +4,6 @@
     "appService.zipIgnorePattern": [
         "node_modules{,/**}",
         ".vscode{,/**}"
-    ]
+    ],
+    "cmake.configureOnOpen": false
 }
