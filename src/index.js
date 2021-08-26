@@ -13,11 +13,14 @@ import { BrowserRouter, Route } from 'react-router-dom'
 
 ReactDOM.render((
   <BrowserRouter basename="/frontend" >
-    <Header />     
+    <Header />
     <Route path="/" exact component={live} />
     <Route path="/lists" component={lists} />
     <Route path="/live" component={live} />
     <Route path="/heats" exact component={Heats} />
+    <Route path="/health">
+      <p>The App is Healthy</p>
+    </Route>
   </BrowserRouter>
 ), document.getElementById('root'))
 
