@@ -1,5 +1,16 @@
 # frontend
 
+## AWS Copy
+
+Copy js files to nginx
+
+```bash
+cd frontend
+npm run build
+cd frontend/build
+tar -cvzf ../../../schwimmen/ansibleswim/roles/nginx/files/frontend.tar.gz *
+```
+
 ## Azure upload
 
 ```bash
