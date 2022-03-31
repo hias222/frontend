@@ -1,6 +1,6 @@
 import React from "react";
 import { LaneData } from "../../interfaces/lanedatainterface";
-import { Grid, Hidden } from "@material-ui/core";
+import { Grid, Hidden } from '@mui/material';
 import LaneNumberFinish from "./LaneNumberFinish";
 import getEntryTime from "../../utilities/getEntryTime";
 
