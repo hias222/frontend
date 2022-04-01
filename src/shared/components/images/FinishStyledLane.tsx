@@ -1,8 +1,8 @@
 import React from "react";
 import { LaneData } from "../../interfaces/lanedatainterface";
-import { Grid, Hidden } from '@mui/material';
 import LaneNumberFinish from "./LaneNumberFinish";
 import getEntryTime from "../../utilities/getEntryTime";
+import { Grid, Hidden } from "@material-ui/core";
 
 export default class FinishStyledLane extends React.Component<LaneData, {}> {
 

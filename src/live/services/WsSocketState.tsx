@@ -35,7 +35,7 @@ export class WsSocketState extends React.Component<WsSocketPropsInterface, WsSoc
 
   componentDidMount() {
 
-    console.log("WsSocketState: connect to " + this.backend_url + "/socket-io");
+    console.log("WsSocketState: connect to " + this.backend_url + " context: " + + this.context_path);
 
     const socket = socketIOClient(this.backend_url,
       {
@@ -43,7 +43,7 @@ export class WsSocketState extends React.Component<WsSocketPropsInterface, WsSoc
       });
 
     socket.on('connect', () => {
-      console.log("WsSocketState: connected " + this.backend_url + " socket-io");
+      console.log("WsSocketState: connected " + this.backend_url + "  context: " + this.context_path);
       this.setState({
         WsConnected: true
       })
